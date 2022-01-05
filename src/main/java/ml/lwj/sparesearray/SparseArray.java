@@ -51,5 +51,23 @@ public class SparseArray {
             System.out.printf("%d\t%d\t%d\t\n",sparseArray[i][0],sparseArray[i][1],sparseArray[i][2]);
         }
 
+        // 将二维数组恢复成原始的二维数组
+
+        int chessArr2 [][] = new int[sparseArray[0][0]][sparseArray[0][1]];
+
+        // 遍历稀疏数组 从第二行开始
+        for (int i = 1;i <sparseArray.length; i++) {
+            chessArr2[sparseArray[i][0]][sparseArray[i][1]] = sparseArray[i][2];
+        }
+
+        // 输出恢复后的二维数组
+        System.out.println("恢复后的二维数组");
+        for(int[] row : chessArr2){
+            for(int data :row){
+                System.out.printf("%d\t" ,data);
+            }
+            System.out.println();
+        }
+
     }
 }
