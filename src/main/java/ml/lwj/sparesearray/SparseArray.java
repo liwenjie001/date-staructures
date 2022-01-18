@@ -33,7 +33,7 @@ public class SparseArray {
         sparseArray[0][2] = sum;
 
         // 遍历数组，将非0的值存放到 稀疏数组当中
-        int count = 0; // count 用于记录第几个非零数据
+        int count = 0; // count 用于记录第几个非零数据D
         for (int i = 0; i < 11; i++) {
             for (int j = 0; j < 11; j++) {
                 if (chessArr[i][j]!=0){
