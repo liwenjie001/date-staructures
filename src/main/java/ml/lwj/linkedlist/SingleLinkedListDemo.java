@@ -20,7 +20,15 @@ public class SingleLinkedListDemo {
         singleLinkedList.addByOrder(hero4);
         singleLinkedList.addByOrder(hero2);
         singleLinkedList.addByOrder(hero3);
-        singleLinkedList.addByOrder(hero3);
+//        singleLinkedList.addByOrder(hero3);
+        // 测试修改节点的代码
+//        singleLinkedList.list();
+//        HeroNode newHeroNode = new HeroNode(7,"小卢","玉麒麟~~");
+//
+//        singleLinkedList.update(newHeroNode);
+//        singleLinkedList.list();
+        // 删除一个节点
+        singleLinkedList.del(1);
         singleLinkedList.list();
     }
 
@@ -100,6 +108,66 @@ class SingleLinkedList {
             tmp = tmp.next;
         }
     }
+    // 修改节点的信息，根据编号来修改，既no编号不能改
+    // 根据newHeroNode 的no来修改
+    public void  update(HeroNode newHeroNode){
+        // 判断是否为空
+        if (head.next == null){
+            System.out.println("链表为空");
+            return;
+        }
+        // 找到需要修改的节点，根据NO编号修改
+        // 定义一个辅助变量
+        HeroNode temp = head.next;
+        boolean flag = false; // 表示是否找到该节点
+        while (true){
+            if (temp==null){
+                break; // 表示链表已经遍历完了
+            }
+            if (temp.no== newHeroNode.no){
+                // 找到了
+                flag = true;
+                break;
+            }
+            temp = temp.next;
+
+        }
+        // 根据flag判断是否找到要修改的节点
+        if (flag){
+            temp.name = newHeroNode.name;
+            temp.nickname = newHeroNode.nickname;
+        } else { // 没有找到
+
+            System.out.printf("没有找到编号 %d 的节点，不能修改",newHeroNode.no);
+        }
+    }
+    // 删除节点
+    // 思路
+    // 1. head 不能动，因此我们需要一个temp辅助节点找到待伤处节点的前一个节点
+    // 2. 在比较时，是temp.next.no 和 需要被删除的no比较
+     public void del(int no) {
+        HeroNode temp = head;
+        boolean falg = false; // 标志是否找到待删除节点的
+         while (true){
+             if (temp.next==null){ // 已经到链表的最后
+                break;
+             }
+             if (temp.next.no == no) {
+                // 找到了待伤处节点的前一个节点
+                 falg = true;
+                 break;
+             }
+             temp = temp.next; // temp 后移
+
+         }
+         if (falg){ // 找到 可以伤处
+             temp.next = temp.next.next;
+         } else {
+             System.out.printf("要删除的 %d 不存在\n",no);
+         }
+
+     }
+
 }
 
 // 定义HeroNode , 每个HeroNode 对象就是一个节点
